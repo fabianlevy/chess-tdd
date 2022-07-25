@@ -1,5 +1,7 @@
 package org.digitalstack.chess;
 
+import static org.digitalstack.chess.MovementType.MOVE;
+
 public class Pawn {
 
     private ChessBoard chessBoard;
@@ -44,7 +46,7 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        if (MovementType.MOVE.equals(movementType)) {
+        if (MOVE.equals(movementType)) {
             if (this.xCoordinate == newX) {
                 if (Math.abs(this.yCoordinate - newY) >= 1) {
                     this.yCoordinate = newY;
