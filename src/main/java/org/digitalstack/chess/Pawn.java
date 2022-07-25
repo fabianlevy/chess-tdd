@@ -1,5 +1,7 @@
 package org.digitalstack.chess;
 
+import static org.digitalstack.chess.PieceColor.BLACK;
+
 public class Pawn {
 
     private ChessBoard chessBoard;
@@ -44,7 +46,30 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if(chessBoard.isLegalBoardPosition(newX, newY)) {
+            if(pieceColor==BLACK){
+                if(getXCoordinate()==newX) {
+                    if(getYCoordinate()-1==newY) {
+                        setNewCoordinates(newX,newY);
+                    }else if(getYCoordinate()==6 && (getYCoordinate()-2)==newY){
+                        setNewCoordinates(newX,newY);
+                    }
+                }
+            }else{
+                if(getXCoordinate()== newX){
+                    if((getYCoordinate()+1) == newY){
+                        setNewCoordinates(newX,newY);
+                    }
+                }else if(getYCoordinate()==1 && (getXCoordinate()+2)==newY){
+                    setNewCoordinates(newX,newY);
+                }
+            }
+        }
+        //throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+    }
+    private void setNewCoordinates(int newX, int newY) {
+        setXCoordinate(newX);
+        setYCoordinate(newY);
     }
 
     @Override
