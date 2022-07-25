@@ -48,9 +48,9 @@ public class PawnTest {
     @Test
     public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates() {
         chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
-        testSubject.move(MovementType.MOVE, 6, 2);
+        testSubject.move(MovementType.MOVE, 6, 4);
         assertEquals(6, testSubject.getXCoordinate());
-        assertEquals(2, testSubject.getYCoordinate());
+        assertEquals(4, testSubject.getYCoordinate());
     }
 
 }
