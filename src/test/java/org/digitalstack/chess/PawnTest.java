@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class PawnTest {
 
-    private ChessBoard chessBoard;
+    public ChessBoard chessBoard;
     private Pawn testSubject;
 
     @Before
