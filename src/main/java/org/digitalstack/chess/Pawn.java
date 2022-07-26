@@ -44,16 +44,31 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        if(MovementType.MOVE.equals(movementType)) {
-            if(this.getXCoordinate() == newX && this.getYCoordinate()+1 == newY) {
-                this.setXCoordinate(newX);
-                this.setYCoordinate(newY);
+        if(PieceColor.WHITE.equals(pieceColor)) {
+            if (MovementType.MOVE.equals(movementType)) {
+                if (this.getXCoordinate() == newX && this.getYCoordinate() + 1 == newY) {
+                    this.setXCoordinate(newX);
+                    this.setYCoordinate(newY);
+                }
             }
-        }
-        if(MovementType.CAPTURE.equals(movementType)) {
-            if(this.getYCoordinate()+1 == newY && (this.getXCoordinate()+1 == newX || this.getXCoordinate()-1 == newX)) {
-                this.setXCoordinate(newX);
-                this.setYCoordinate(newY);
+            if (MovementType.CAPTURE.equals(movementType)) {
+                if (this.getYCoordinate() + 1 == newY && (this.getXCoordinate() + 1 == newX || this.getXCoordinate() - 1 == newX)) {
+                    this.setXCoordinate(newX);
+                    this.setYCoordinate(newY);
+                }
+            }
+        }else{
+            if (MovementType.MOVE.equals(movementType)) {
+                if (this.getXCoordinate() == newX && this.getYCoordinate() - 1 == newY) {
+                    this.setXCoordinate(newX);
+                    this.setYCoordinate(newY);
+                }
+            }
+            if (MovementType.CAPTURE.equals(movementType)) {
+                if (this.getYCoordinate() - 1 == newY && (this.getXCoordinate() + 1 == newX || this.getXCoordinate() - 1 == newX)) {
+                    this.setXCoordinate(newX);
+                    this.setYCoordinate(newY);
+                }
             }
         }
     }
