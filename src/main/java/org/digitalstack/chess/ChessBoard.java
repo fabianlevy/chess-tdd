@@ -12,10 +12,28 @@ public class ChessBoard {
     }
 
     public void add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.add()");
+    	if(isLegalBoardPosition(xCoordinate, yCoordinate)) {
+    		if(pieces[xCoordinate][yCoordinate] == null)
+    		{
+    			pawn.setXCoordinate(xCoordinate);
+    			pawn.setYCoordinate(yCoordinate);
+    			pieces[xCoordinate][yCoordinate] = pawn;
+    		}
+    		else {
+    			pawn.setXCoordinate(-1);
+    			pawn.setYCoordinate(-1);
+    		}
+    	}
+    	else {
+    		pawn.setXCoordinate(-1);
+			pawn.setYCoordinate(-1);
+    	}
     }
 
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
+    	if(xCoordinate < 0 || yCoordinate < 0 || xCoordinate > 6 || yCoordinate > 6)
+    		return false;
+    	
+    	return true;
     }
 }
