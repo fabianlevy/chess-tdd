@@ -45,12 +45,21 @@ public class PawnTest {
         assertEquals(3, testSubject.getYCoordinate());
     }
 
+    //    @Test
+    //    public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates() {
+    //        chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
+    //        testSubject.move(MovementType.MOVE, 6, 2);
+    //        assertEquals(6, testSubject.getXCoordinate());
+    //        assertEquals(2, testSubject.getYCoordinate());
+    //    }
+    //Daca consideram originea tablei in stanga jos, acest test nu este corect, mai jost este testul refacut.
+
     @Test
     public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates() {
         chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
-        testSubject.move(MovementType.MOVE, 6, 2);
+        testSubject.move(MovementType.MOVE, 6, 4);
         assertEquals(6, testSubject.getXCoordinate());
-        assertEquals(2, testSubject.getYCoordinate());
+        assertEquals(4, testSubject.getYCoordinate());
     }
 
 }

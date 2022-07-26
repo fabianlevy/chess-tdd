@@ -39,12 +39,15 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    public void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (MovementType.MOVE.equals(movementType) && newY > yCoordinate) {
+            xCoordinate = newX;
+            yCoordinate = newY;
+        }
     }
 
     @Override
