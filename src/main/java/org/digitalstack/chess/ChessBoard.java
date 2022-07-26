@@ -4,6 +4,7 @@ public class ChessBoard {
 
     public static int BOARD_WIDTH = 7;
     public static int BOARD_HEIGHT = 7;
+    static int andrei;
 
     private final Pawn[][] pieces;
 
