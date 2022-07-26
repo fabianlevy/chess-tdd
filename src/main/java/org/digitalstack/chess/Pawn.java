@@ -1,5 +1,7 @@
 package org.digitalstack.chess;
 
+import Chess.MovementType;
+
 public class Pawn {
 
     private ChessBoard chessBoard;
@@ -44,7 +46,19 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+    	if(MovementType.MOVE.equals(movementType)) {
+    		if(this.getYCoordinate() > 1 && (this.getXCoordinate() == newX || this.getXCoordinate()-1 == newX)) {
+    			this.setXCoordinate(newX);
+                this.setYCoordinate(newY);
+               }
+    	   }
+    	else {
+    		if(this.getYCoordinate()+1 == newX && (this.getXCoordinate()<= newX || this.getXCoordinate()-1 == newX)) {
+    			this.setXCoordinate(newX);
+    			this.setYCoordinate(newY);
+    		   }
+    	   }
+    	}
     }
 
     @Override

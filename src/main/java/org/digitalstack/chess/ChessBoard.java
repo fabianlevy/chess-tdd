@@ -1,5 +1,7 @@
 package org.digitalstack.chess;
 
+import Chess.PieceColor;
+
 public class ChessBoard {
 
     public static int BOARD_WIDTH = 7;
@@ -12,10 +14,40 @@ public class ChessBoard {
     }
 
     public void add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.add()");
+    	int numberOfWhites = 0;
+        int numberOfBlacks = 0;
+    	if(isLegalBoardPosition(xCoordinate, yCoordinate) && pieces[xCoordinate][yCoordinate] == null 
+    			&& isValidPawn(pieceColor,numberOfWhites,numberOfBlacks)) {
+            if(PieceColor.BLACK.equals(pieceColor)) {
+            	numberOfBlacks++;
+            }
+            else {
+            	numberOfWhites++;
+            }
+                pawn.setXCoordinate(xCoordinate);
+                pawn.setYCoordinate(yCoordinate);
+                pieces[pawn.getXCoordinate()][pawn.getYCoordinate()] = pawn;
+            }
+        else {
+            pawn.setXCoordinate(-1);
+            pawn.setYCoordinate(-1);
+        	}
+    	}
     }
 
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
+    	return xCoordinate >= 0 && xCoordinate <= 7 && yCoordinate >= 0 && yCoordinate <= 7;
     }
+    
+    public boolean isValidPawn(PieceColor pieceColor, int numberOfWhites, int numberOfBlacks) {
+	    if(PieceColor.BLACK.equals(pieceColor) && numberOfWhites < 7) {
+	    	return true;
+	    }
+	    else if(PieceColor.WHITE.equals(pieceColor) && numberOfBlacks < 7) {
+	    	return true;
+	    }
+	    else {
+	    	return false;
+	    }
+	}
 }
