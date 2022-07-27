@@ -80,11 +80,11 @@ public class ChessBoardTest {
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessBoard.BOARD_WIDTH;
-            testSubject.add(pawn, 6 + row, i % ChessBoard.BOARD_WIDTH, PieceColor.BLACK);
+            testSubject.add(pawn,  i % ChessBoard.BOARD_WIDTH,6 + row, PieceColor.BLACK);
             if (row < 1)
             {
-                assertEquals(6 + row, pawn.getXCoordinate());
-                assertEquals(i % ChessBoard.BOARD_WIDTH, pawn.getYCoordinate());
+                assertEquals(i % ChessBoard.BOARD_WIDTH, pawn.getXCoordinate());
+                assertEquals(6 + row, pawn.getYCoordinate());
             }
             else
             {

@@ -52,5 +52,20 @@ public class PawnTest {
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(2, testSubject.getYCoordinate());
     }
+    @Test
+    public void testPawn_Move_LegalCoordinate_ForwardWith2_UpdatesCoordinates(){
+        chessBoard.add(testSubject, 6, 6, PieceColor.BLACK);
+        testSubject.move(MovementType.MOVE, 6, 4);
+        assertEquals(6, testSubject.getXCoordinate());
+        assertEquals(4, testSubject.getYCoordinate());
+    }
+
+    @Test
+    public void testPawn_Move_LegalCoordinate_ForwardWith2_DoesNotMove(){
+        chessBoard.add(testSubject, 6, 6, PieceColor.BLACK);
+        testSubject.move(MovementType.MOVE, 4, 4);
+        assertEquals(6, testSubject.getXCoordinate());
+        assertEquals(6, testSubject.getYCoordinate());
+    }
 
 }
