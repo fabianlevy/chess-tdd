@@ -44,7 +44,15 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        setChessBoard(new ChessBoard());
+        int oldX = getXCoordinate();
+        int oldY = getYCoordinate();
+        if(movementType.equals(MovementType.MOVE) && 
+           chessBoard.isLegalBoardPosition(newX, newY) &&
+           chessBoard.isValidMove(newX, newY, oldX, oldY)) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
     }
 
     @Override
