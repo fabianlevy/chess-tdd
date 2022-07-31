@@ -2,7 +2,7 @@ package org.digitalstack.chess;
 
 public class Pawn {
 
-    private ChessBoard chessBoard;
+    public ChessBoard chessBoard;
     private int xCoordinate;
     private int yCoordinate;
     private PieceColor pieceColor;
@@ -39,12 +39,13 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    public void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+       this.xCoordinate = newX;
+       this.yCoordinate=newY;
     }
 
     @Override

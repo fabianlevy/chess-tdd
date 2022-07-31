@@ -76,7 +76,7 @@ public class ChessBoardTest {
     @Test
     public void testLimits_The_Number_Of_Pawns()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 7; i++)
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessBoard.BOARD_WIDTH;
