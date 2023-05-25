@@ -39,12 +39,27 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    public void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
+    /**
+     * Verificam daca avem instructiunea de move data ca si parametru.
+     * In caz afirmativ verificam daca avem aceeasi coordonata pe axa X. (doar in acest caz se poate muta pionul)
+     * Daca se intampla acest lucru verificam daca diferenta dintre vechile si noile coordonate in valoare absoluta
+     * ne da rezultatul 1. (conform regulilor de sah, pionul poate parcurge un singur patratel).
+     * Daca rezultatul obtinut este 1 atunci schimbam valoarea curenta de pe axa Y cu noua valoare, astfel avasand pionul.
+     * @param movementType
+     * @param newX
+     * @param newY
+     */
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+
+        if (MovementType.MOVE.equals(movementType) && newX == getXCoordinate()) {
+            if(Math.abs(getYCoordinate() - newY) == 1){
+                setYCoordinate(newY);
+            }
+        }
     }
 
     @Override
