@@ -10,10 +10,12 @@ public class PawnTest {
     private ChessBoard chessBoard;
     private Pawn testSubject;
 
+
     @Before
     public void setUp() {
         this.chessBoard = new ChessBoard();
         this.testSubject = new Pawn(PieceColor.BLACK);
+
     }
 
     @Test
@@ -52,5 +54,4 @@ public class PawnTest {
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(2, testSubject.getYCoordinate());
     }
-
 }

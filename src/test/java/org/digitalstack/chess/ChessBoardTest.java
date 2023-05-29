@@ -80,6 +80,7 @@ public class ChessBoardTest {
         {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessBoard.BOARD_WIDTH;
+
             testSubject.add(pawn, 6 + row, i % ChessBoard.BOARD_WIDTH, PieceColor.BLACK);
             if (row < 1)
             {
