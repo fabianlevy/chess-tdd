@@ -14,6 +14,8 @@ public class PawnTest {
     public void setUp() {
         this.chessBoard = new ChessBoard();
         this.testSubject = new Pawn(PieceColor.BLACK);
+        //A trebuit sa ii setez chess board-ul pionului pentru ca testele sa poata rula.
+        testSubject.setChessBoard(chessBoard);
     }
 
     @Test
