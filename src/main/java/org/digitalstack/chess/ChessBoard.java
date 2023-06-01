@@ -8,14 +8,24 @@ public class ChessBoard {
     private final Pawn[][] pieces;
 
     public ChessBoard() {
-        pieces = new Pawn[BOARD_WIDTH][BOARD_HEIGHT];
+        /*Chiar daca o tabla de sah este de obicei o matrice patratica nu era corect sa o instantiam cu BOARD_WIDTH
+        linii si BOARD_HEIGHT coloane. */
+        pieces = new Pawn[BOARD_HEIGHT][BOARD_WIDTH];
     }
 
     public void add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.add()");
+        if (isLegalBoardPosition(xCoordinate, yCoordinate) && pieces[yCoordinate][xCoordinate] == null) {
+            pawn.setXCoordinate(xCoordinate);
+            pawn.setYCoordinate(yCoordinate);
+            pieces[yCoordinate][xCoordinate] = pawn;
+        } else {
+            pawn.setXCoordinate(-1);
+            pawn.setYCoordinate(-1);
+        }
     }
 
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
+        return (xCoordinate >= 0 && xCoordinate < ChessBoard.BOARD_WIDTH)
+                && (yCoordinate >= 0 && yCoordinate < ChessBoard.BOARD_HEIGHT);
     }
 }
