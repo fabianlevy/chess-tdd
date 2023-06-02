@@ -67,6 +67,7 @@ public class ChessBoardTest {
         Pawn secondPawn = new Pawn(PieceColor.BLACK);
         testSubject.add(firstPawn, 6, 3, PieceColor.BLACK);
         testSubject.add(secondPawn, 6, 3, PieceColor.BLACK);
+        System.out.println(firstPawn.getXCoordinate());
         assertEquals(6, firstPawn.getXCoordinate());
         assertEquals(3, firstPawn.getYCoordinate());
         assertEquals(-1, secondPawn.getXCoordinate());
