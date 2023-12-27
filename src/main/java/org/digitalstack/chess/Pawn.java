@@ -44,7 +44,20 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if(movementType == MovementType.MOVE){
+            if(this.pieceColor == PieceColor.BLACK){
+                validateBlackMove(newX, newY);
+            }
+        }
+        //throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+
+
+    }
+
+    private void validateBlackMove(int newX, int newY){
+        if(newX == this.xCoordinate && this.yCoordinate - newY == 1){
+            this.yCoordinate = newY;
+        }
     }
 
     @Override
