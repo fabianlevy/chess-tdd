@@ -8,7 +8,7 @@ public class ChessBoard {
     private final Pawn[][] pieces;
 
     public ChessBoard() {
-        pieces = new Pawn[BOARD_WIDTH + 1][BOARD_HEIGHT + 1];
+        pieces = new Pawn[BOARD_WIDTH][BOARD_HEIGHT];
     }
 
     public void add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {

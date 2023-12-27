@@ -60,10 +60,6 @@ public class Pawn {
         }
     }
 
-    private boolean isFirstMove(){
-        return this.yCoordinate == 6;
-    }
-
     @Override
     public String toString() {
         return currentPositionAsString();
