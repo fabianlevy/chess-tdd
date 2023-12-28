@@ -11,7 +11,7 @@ public class Pawn {
         this.pieceColor = pieceColor;
     }
 
-    public ChessBoard getChesssBoard() {
+    public ChessBoard getChessBoard() {
         return chessBoard;
     }
 
@@ -23,28 +23,55 @@ public class Pawn {
         return xCoordinate;
     }
 
-    public void setXCoordinate(int value) {
-        this.xCoordinate = value;
+    public void setXCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
     }
 
     public int getYCoordinate() {
         return yCoordinate;
     }
 
-    public void setYCoordinate(int value) {
-        this.yCoordinate = value;
+    public void setYCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
 
     public PieceColor getPieceColor() {
-        return this.pieceColor;
-    }
-
-    private void setPieceColor(PieceColor value) {
-        pieceColor = value;
+        return pieceColor;
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (!isValidMove(movementType, newX, newY)) {
+            return;
+        }
+
+        if (movementType == MovementType.MOVE) {
+            setYCoordinate(newY);
+            setXCoordinate(newX);
+        } else if (movementType == MovementType.CAPTURE) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
+    }
+
+    private boolean isValidMove(MovementType movementType, int newX, int newY) {
+        int yDirection = (pieceColor == PieceColor.WHITE) ? 1 : -1;
+
+        if (!chessBoard.isLegalBoardPosition(newX, newY)) {
+            return false;
+        }
+
+        if (movementType == MovementType.MOVE) {
+            return (newY - yCoordinate == yDirection) && newX == xCoordinate;
+        } else if (movementType == MovementType.CAPTURE) {
+            return Math.abs(newX - xCoordinate) == 1 && newY - yCoordinate == yDirection && isOpponentPieceAt(newX, newY);
+        }
+
+        return false;
+    }
+
+    private boolean isOpponentPieceAt(int x, int y) {
+        Pawn piece = chessBoard.getPieceAt(x, y);
+        return piece != null && piece.getPieceColor() != this.pieceColor;
     }
 
     @Override
