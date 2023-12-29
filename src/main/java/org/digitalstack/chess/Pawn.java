@@ -39,12 +39,27 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
+    private boolean isValidMove(int newX, int newY) {
+        int direction = (pieceColor == PieceColor.WHITE) ? 1 : -1;
+
+        // Pawn movement validation logic
+        // Allow forward movement one square and backward movement for WHITE pawns
+        return (newX == xCoordinate && newY == yCoordinate + direction) ||
+                (newX == xCoordinate && newY == yCoordinate - direction);
+    }
+
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType == MovementType.MOVE) {
+            if (isValidMove(newX, newY)) {
+                xCoordinate = newX;
+                yCoordinate = newY;
+            }
+        }
+        //throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
     }
 
     @Override
