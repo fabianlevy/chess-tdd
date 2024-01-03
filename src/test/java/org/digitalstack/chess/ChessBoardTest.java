@@ -10,14 +10,13 @@ public class ChessBoardTest {
     private ChessBoard testSubject;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         testSubject = new ChessBoard();
     }
 
     @Test
     public void testHas_BoardWidth_of_7() {
-        assertEquals(7, ChessBoard.BOARD_HEIGHT);
+        assertEquals(7, ChessBoard.BOARD_WIDTH);
     }
 
     @Test
@@ -74,20 +73,15 @@ public class ChessBoardTest {
     }
 
     @Test
-    public void testLimits_The_Number_Of_Pawns()
-    {
-        for (int i = 0; i < 10; i++)
-        {
+    public void testLimits_The_Number_Of_Pawns() {
+        for (int i = 0; i < 10; i++) {
             Pawn pawn = new Pawn(PieceColor.BLACK);
             int row = i / ChessBoard.BOARD_WIDTH;
             testSubject.add(pawn, 6 + row, i % ChessBoard.BOARD_WIDTH, PieceColor.BLACK);
-            if (row < 1)
-            {
+            if (row < 1) {
                 assertEquals(6 + row, pawn.getXCoordinate());
                 assertEquals(i % ChessBoard.BOARD_WIDTH, pawn.getYCoordinate());
-            }
-            else
-            {
+            } else {
                 assertEquals(-1, pawn.getXCoordinate());
                 assertEquals(-1, pawn.getYCoordinate());
             }

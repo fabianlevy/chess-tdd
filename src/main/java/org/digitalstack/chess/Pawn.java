@@ -44,7 +44,23 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType == MovementType.MOVE) {
+            if (chessBoard.isLegalBoardPosition(newX, newY)) {
+                if (isValidMove(newX, newY)) {
+                    setXCoordinate(newX);
+                    setYCoordinate(newY);
+                }
+            }
+        }
+    }
+
+    private boolean isValidMove(int newX, int newY) {
+        int deltaX = Math.abs(newX - getXCoordinate());
+        int deltaY = Math.abs(newY - getYCoordinate());
+
+        // Poziția nouă trebuie sa fie la diferenta de maxim o coloană și un rând
+        return deltaX <= 1 && deltaY <= 1;
+
     }
 
     @Override
