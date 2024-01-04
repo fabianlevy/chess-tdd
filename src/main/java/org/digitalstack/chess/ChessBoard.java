@@ -16,6 +16,6 @@ public class ChessBoard {
     }
 
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
-        throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
+        throw new UnsupportedOperationException("Bla bla");
     }
 }
