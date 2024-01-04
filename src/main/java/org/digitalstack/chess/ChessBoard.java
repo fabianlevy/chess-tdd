@@ -13,7 +13,7 @@ public class ChessBoard {
 
 
     private int pawnCounter = 0;
-    private static final int MAX_PAWNS = 7; // Change this value according to your requirements
+    private static final int MAX_PAWNS = 7;
 
     public void add(Pawn pawn, int xCoordinate, int yCoordinate, PieceColor pieceColor) {
         if (pawnCounter < MAX_PAWNS) {
@@ -37,11 +37,8 @@ public class ChessBoard {
         }
     }
 
-
-
     public boolean isLegalBoardPosition(int xCoordinate, int yCoordinate) {
         return xCoordinate >= 0 && xCoordinate < BOARD_WIDTH &&
                 yCoordinate >= 0 && yCoordinate < BOARD_HEIGHT;
-//        throw new UnsupportedOperationException("Need to implement ChessBoard.IsLegalBoardPosition()");
     }
 }
