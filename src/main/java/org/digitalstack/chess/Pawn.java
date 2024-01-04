@@ -1,5 +1,7 @@
 package org.digitalstack.chess;
 
+//import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class Pawn {
 
     private ChessBoard chessBoard;
@@ -39,13 +41,32 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType == MovementType.MOVE && chessBoard != null) {
+
+            if (checkMove(newX, newY) && chessBoard.isLegalBoardPosition(newX, newY)) {
+                xCoordinate = newX;
+                yCoordinate = newY;
+            }
+        }
     }
+
+    public Boolean checkMove(int currX, int currY) {
+        if (currX >= 0 && currX < ChessBoard.BOARD_WIDTH && currY >= 0 && currY < ChessBoard.BOARD_HEIGHT) {
+            if (getPieceColor() == PieceColor.BLACK) {
+                return currX >= getXCoordinate();
+            } else if (getPieceColor() == PieceColor.WHITE) {
+                return currY >= getYCoordinate();
+            }
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {
