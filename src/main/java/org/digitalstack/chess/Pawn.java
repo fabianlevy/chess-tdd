@@ -1,7 +1,5 @@
 package org.digitalstack.chess;
-
 public class Pawn {
-
     private ChessBoard chessBoard;
     private int xCoordinate;
     private int yCoordinate;
@@ -44,7 +42,46 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if ((movementType == MovementType.MOVE) && isLegalMove(newX, newY)) {
+            chessBoard.getPieces()[yCoordinate][xCoordinate] = null;
+            this.setYCoordinate(newY);
+            chessBoard.getPieces()[newY][xCoordinate] = this;
+        } else if ((movementType == MovementType.CAPTURE) && isLegalCapture(newX, newY)) {
+            chessBoard.getPieces()[yCoordinate][xCoordinate] = null;
+            this.setXCoordinate(newX);
+            this.setYCoordinate(newY);
+            chessBoard.getPieces()[newY][newX] = this;
+        }
+    }
+
+    public boolean isLegalMove(int newX, int newY) {
+        if (!chessBoard.isLegalBoardPosition(newX, newY)) {
+            return false;
+        }
+        if ((chessBoard.getPieces()[newY][newX] == null) && (newX == this.xCoordinate)) {
+            if (this.pieceColor == PieceColor.BLACK) {
+                return (newY - this.yCoordinate) == -1;
+            }
+            if (this.pieceColor == PieceColor.WHITE) {
+                return (newY - this.yCoordinate) == 1;
+            }
+        }
+        return false;
+    }
+
+    public boolean isLegalCapture(int newX, int newY) {
+        if (!chessBoard.isLegalBoardPosition(newX, newY)) {
+            return false;
+        }
+        if ((chessBoard.getPieces()[newY][newX] != null) && (chessBoard.getPieces()[newY][newX].getPieceColor() != this.pieceColor)) {
+            if (this.pieceColor == PieceColor.BLACK) {
+                return (newY - this.yCoordinate == -1 && (newX - this.xCoordinate == 1 || newX - this.xCoordinate == -1));
+            }
+            if (this.pieceColor == PieceColor.WHITE) {
+                return (newY - this.yCoordinate == 1 && (newX - this.xCoordinate == 1 || newX - this.xCoordinate == -1));
+            }
+        }
+        return false;
     }
 
     @Override
