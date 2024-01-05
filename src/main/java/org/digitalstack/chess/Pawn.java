@@ -39,12 +39,31 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    public void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        switch (movementType) {
+            case MOVE:
+                if (isValidForwardMove(newX, newY))
+                {
+                    setXCoordinate(newX);
+                    setYCoordinate(newY);
+                }
+                break;
+            case CAPTURE:
+            {
+                setXCoordinate(newX);
+                setYCoordinate(newY);
+            }
+                break;
+            default:
+                throw new IllegalArgumentException("Unsupported movement type");
+        }
+    }
+    private boolean isValidForwardMove(int newX, int newY) {
+        return newY == yCoordinate - 1  && newX == xCoordinate ;
     }
 
     @Override
