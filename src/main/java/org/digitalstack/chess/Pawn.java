@@ -44,7 +44,30 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        switch (movementType) {
+        case MOVE:
+            // Verificam daca coordonatele sunt in limitele tablei de joc
+            if (!chessBoard.isLegalBoardPosition(newX, newY)) {
+                return;
+            }
+            //Mutare piese negre(descendent)
+            if (pieceColor == PieceColor.BLACK) {
+                if (newX == this.xCoordinate && newY == this.yCoordinate - 1) {
+                    setYCoordinate(newY);
+                }
+            }
+
+            // Mutare piese albe(ascendent)
+            if (pieceColor == PieceColor.WHITE) {
+                if (newX == this.xCoordinate && newY == this.yCoordinate + 1) {
+                    setYCoordinate(newY);
+                }
+            }
+            break;
+
+        case CAPTURE:
+            break;
+        }
     }
 
     @Override
