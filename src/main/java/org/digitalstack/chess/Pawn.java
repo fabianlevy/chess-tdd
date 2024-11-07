@@ -11,7 +11,7 @@ public class Pawn {
         this.pieceColor = pieceColor;
     }
 
-    public ChessBoard getChesssBoard() {
+    public ChessBoard getChessBoard() {
         return chessBoard;
     }
 
@@ -44,7 +44,23 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType == MovementType.MOVE
+                && ChessBoard.isLegalBoardPosition(newX, newY)
+                && isNextMove(newX, newY)) {
+            this.xCoordinate = newX;
+            this.yCoordinate = newY;
+        }
+    }
+
+    private boolean isNextMove(int newX, int newY) {
+        if (newX != xCoordinate) {
+            return false;
+        }
+        if (pieceColor == PieceColor.BLACK) {
+            return newY == yCoordinate - 1;
+        } else {
+            return newY == yCoordinate + 1;
+        }
     }
 
     @Override
