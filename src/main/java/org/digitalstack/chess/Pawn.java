@@ -39,12 +39,41 @@ public class Pawn {
         return this.pieceColor;
     }
 
-    private void setPieceColor(PieceColor value) {
+    void setPieceColor(PieceColor value) {
         pieceColor = value;
     }
 
-    public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+    public void moveX(MovementType movementType, int newX, int newY) {
+        if((MovementType.MOVE.equals(movementType)) && (getChesssBoard().isLegalBoardPosition(newX,newY))) {
+            if (newX - getXCoordinate() == 1 || getXCoordinate() - newX == 1) {
+                setXCoordinate(newX);
+                setYCoordinate(newY);
+                System.out.println("Moved pawn to position (" + getXCoordinate() + "," + getYCoordinate() + ")");
+            } else
+                System.out.println("Pawn cannot be moved to position (" + newX + "," + newY + "). Only one position can be moved.");
+        }
+    }
+
+    public void moveY(MovementType movementType, int newX, int newY) {
+        if((MovementType.MOVE.equals(movementType)) && (getChesssBoard().isLegalBoardPosition(newX,newY))) {
+            if (newY - getYCoordinate() == 1 || getYCoordinate() - newY == 1) {
+                setXCoordinate(newX);
+                setYCoordinate(newY);
+                System.out.println("Moved pawn to position (" + getXCoordinate() + "," + getYCoordinate() + ")");
+            } else
+                System.out.println("Pawn cannot be moved to position (" + newX + "," + newY + "). Only one position can be moved.");
+        }
+    }
+
+    public void moveXY(MovementType movementType, int newX, int newY) {
+        if((MovementType.MOVE.equals(movementType)) && (getChesssBoard().isLegalBoardPosition(newX,newY))) {
+            if ((newX - getXCoordinate() == 1 || getXCoordinate() - newX == 1) && (newY - getYCoordinate() == 1 || getYCoordinate() - newY == 1)) {
+                setXCoordinate(newX);
+                setYCoordinate(newY);
+                System.out.println("Moved pawn to position (" + getXCoordinate() + "," + getYCoordinate() + ")");
+            } else
+                System.out.println("Pawn cannot be moved to position (" + newX + "," + newY + "). Only one position can be moved.");
+        }
     }
 
     @Override
