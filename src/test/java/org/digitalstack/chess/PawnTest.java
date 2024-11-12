@@ -32,7 +32,7 @@ public class PawnTest {
     @Test
     public void testPawn_Move_IllegalCoordinates_Right_DoesNotMove() {
         chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
-        testSubject.move(MovementType.MOVE, 7, 3);
+        testSubject.moveX(MovementType.MOVE, 7, 3);
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(3, testSubject.getYCoordinate());
     }
@@ -40,17 +40,32 @@ public class PawnTest {
     @Test
     public void testPawn_Move_IllegalCoordinates_Left_DoesNotMove() {
         chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
-        testSubject.move(MovementType.MOVE, 4, 3);
+        testSubject.moveX(MovementType.MOVE, 4, 3);
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(3, testSubject.getYCoordinate());
     }
 
     @Test
-    public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates() {
+    public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates_X() {
         chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
-        testSubject.move(MovementType.MOVE, 6, 2);
+        testSubject.moveX(MovementType.MOVE, 5, 3);
+        assertEquals(5, testSubject.getXCoordinate());
+        assertEquals(3, testSubject.getYCoordinate());
+    }
+
+    @Test
+    public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates_Y() {
+        chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
+        testSubject.moveY(MovementType.MOVE, 6, 2);
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(2, testSubject.getYCoordinate());
     }
 
+    @Test
+    public void testPawn_Move_LegalCoordinates_Forward_UpdatesCoordinates_X_Y() {
+        chessBoard.add(testSubject, 6, 3, PieceColor.BLACK);
+        testSubject.moveXY(MovementType.MOVE, 5, 2);
+        assertEquals(5, testSubject.getXCoordinate());
+        assertEquals(2, testSubject.getYCoordinate());
+    }
 }
