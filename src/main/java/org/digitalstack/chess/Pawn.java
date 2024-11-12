@@ -5,46 +5,42 @@ public class Pawn {
     private ChessBoard chessBoard;
     private int xCoordinate;
     private int yCoordinate;
-    private PieceColor pieceColor;
+    private final PieceColor pieceColor;
 
     public Pawn(PieceColor pieceColor) {
         this.pieceColor = pieceColor;
-    }
-
-    public ChessBoard getChesssBoard() {
-        return chessBoard;
-    }
-
-    public void setChessBoard(ChessBoard chessBoard) {
-        this.chessBoard = chessBoard;
+        this.xCoordinate = -1;
+        this.yCoordinate = -1;
+        this.chessBoard = new ChessBoard();
     }
 
     public int getXCoordinate() {
         return xCoordinate;
     }
 
-    public void setXCoordinate(int value) {
-        this.xCoordinate = value;
-    }
-
     public int getYCoordinate() {
         return yCoordinate;
     }
 
-    public void setYCoordinate(int value) {
-        this.yCoordinate = value;
+    // Coordinate setters
+    public void setXCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
     }
 
-    public PieceColor getPieceColor() {
-        return this.pieceColor;
+    public void setYCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
-
-    private void setPieceColor(PieceColor value) {
-        pieceColor = value;
-    }
-
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType != MovementType.MOVE) {
+            throw new UnsupportedOperationException("Only simple MOVE is supported for pawns");
+        }
+        int allowedYMove = (pieceColor == PieceColor.BLACK) ? -1 : 1;
+
+        if (newX == xCoordinate && newY == yCoordinate + allowedYMove &&
+                chessBoard.isLegalBoardPosition(newX, newY)) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
     }
 
     @Override
