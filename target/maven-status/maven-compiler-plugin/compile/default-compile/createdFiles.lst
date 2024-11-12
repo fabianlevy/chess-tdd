@@ -1,0 +1,4 @@
+org/digitalstack/chess/Pawn.class
+org/digitalstack/chess/PieceColor.class
+org/digitalstack/chess/MovementType.class
+org/digitalstack/chess/ChessBoard.class
