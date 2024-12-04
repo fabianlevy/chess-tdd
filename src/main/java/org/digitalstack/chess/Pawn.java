@@ -44,7 +44,17 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if(chessBoard == null || !chessBoard.isLegalBoardPosition(newX,newY)){
+            return;
+        }
+
+        if(movementType == MovementType.MOVE && newX == xCoordinate && Math.abs(newY - yCoordinate) == 1){
+            yCoordinate = newY;
+        }
+        else if(movementType == MovementType.CAPTURE && newY - yCoordinate == 1 && Math.abs(newX - xCoordinate) == 1){
+            xCoordinate = newX;
+            yCoordinate = newY;
+        }
     }
 
     @Override
