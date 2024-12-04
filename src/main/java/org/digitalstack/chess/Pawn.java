@@ -44,7 +44,43 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (!chessBoard.isLegalBoardPosition(newX, newY)) {
+            return;
+        }
+
+        int xDiff = newX - xCoordinate;
+        int yDiff = newY - yCoordinate;
+
+        switch (movementType) {
+            case MOVE:
+                handleMove(xDiff, yDiff, newX, newY);
+                break;
+            case CAPTURE:
+                handleCapture(xDiff, yDiff, newX, newY);
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown movement type: " + movementType);
+        }
+    }
+
+    private void handleMove(int xDiff, int yDiff, int newX, int newY) {
+        if (pieceColor == PieceColor.WHITE && xDiff == 0 && yDiff == 1) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        } else if (pieceColor == PieceColor.BLACK && xDiff == 0 && yDiff == -1) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
+    }
+
+    private void handleCapture(int xDiff, int yDiff, int newX, int newY) {
+        if (pieceColor == PieceColor.WHITE && Math.abs(xDiff) == 1 && yDiff == 1) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        } else if (pieceColor == PieceColor.BLACK && Math.abs(xDiff) == 1 && yDiff == -1) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
     }
 
     @Override
