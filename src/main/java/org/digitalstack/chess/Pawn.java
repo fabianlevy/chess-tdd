@@ -44,7 +44,26 @@ public class Pawn {
     }
 
     public void move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.move()") ;
+        if (movementType != MovementType.MOVE || chessBoard.isLegalBoardPosition(newX, newY)) {
+            return;
+        }
+        
+        boolean isMoveValid = false;
+       
+        
+        if (pieceColor == PieceColor.BLACK) {
+           
+            isMoveValid = (newX == xCoordinate && newY == yCoordinate - 1);
+        } else if (pieceColor == PieceColor.WHITE) {
+           
+        } else if (pieceColor == PieceColor.WHITE) {
+            isMoveValid = (newX == xCoordinate && newY == yCoordinate + 1);
+        }
+       
+        if (isMoveValid) {
+            setXCoordinate(newX);
+            setYCoordinate(newY);
+        }
     }
 
     @Override
